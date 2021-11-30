@@ -1,0 +1,31 @@
+name: CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: 持续部署
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      - name: 将 Git Short Head 注入版本号
+        run: sed -i "s/GitShoreHead/$(git rev-parse --short HEAD)/g" src/git-shore-head.ts
+
+      - name: 安装依赖
+        run: yarn install
+
+      - name: 构建
+        run: yarn build
+
+      - name: 安装 ossutil ( 阿里云对象存储命令行工具 )
+        run: |
+          wget https://gosspublic.alicdn.com/ossutil/1.7.7/ossutil64
+          chmod 755 ossutil64
+
+      - name: 同步到 OSS
+        run: ./ossutil64 sync dist/ oss://appopenoss/prod/event-page/quick-build-module/ --delete -f -e oss-cn-beijing.aliyuncs.com -i ${{secrets.ALIYUN_ACCESS_KEY_ID_APPOPENOSS}} -k ${{secrets.ALIYUN_ACCESS_KEY_SECRET_APPOPENOSS}}

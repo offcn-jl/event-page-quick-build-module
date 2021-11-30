@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- dynamic js 页面script最前头 -->
+    <script src="/ssogateway/v1/web/sdk?ssoAppId=10020&redirect=0"></script>
+    <script>
+        console.log(ssoGatewayInfo);//浏览器中可查看用户信息结构
+    </script>
+</head>
+<body>
+<div id="main">
+</div>
+<p>
+    <a href="/ssogateway/v1/web/logout?ssoAppId=10020">退出</a>
+</p>
+<script>
+    document.getElementById("main").innerText = ssoGatewayInfo.username;
+</script>
+
+<script>
+    // 登陆
+    // ssoLogin(
+    //     {
+    //         "type": 2,
+    //         "username": "17887109896",
+    //         "code": "611792"
+    //     }
+    //     ,(res)=>console.log(res)
+    //     ,(code,msg)=>console.error(code,msg)
+    // )
+    // 注册
+    // ssoRequest('POST', 'user/sms/send', {phone: 17887109896}, (res)=>console.log(res)
+    //   ,(code,msg)=>console.error(code,msg));
+</script>
+
+</body>
+</html>

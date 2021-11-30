@@ -1,0 +1,146 @@
+/* 遮罩 开始 */
+.offcn-sso .offcn-sso-cover {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+    display: none;
+}
+/* 遮罩 结束 */
+
+/* 弹窗 开始 */
+.offcn-sso .offcn-sso-modal {
+    display: none;
+    background: #f3f5f7;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    border-radius: 10px;
+    z-index: 9999;
+    text-align: center;
+    width: 350px;
+    margin-top: -210px;
+    margin-left: -175px;
+}
+
+/* 弹窗 关闭按钮 */
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-close {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: -30px;
+    top: -40px;
+    cursor: pointer;
+    background: url(https://statics.jilinoffcn.com/images/public/close.png) no-repeat center center;
+}
+
+/* 弹窗 顶部 开始 */
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-top {
+    background:#fff;
+    opacity: 0.9;
+    border-top-left-radius: 10px;
+    border-top-right-radius:10px ;
+    width: 100%;
+    height:60px;
+    font-size: 22px;
+    line-height:60px;
+    user-select:none;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-top .offcn-sso-modal-top-span{
+    margin: 0 10px;
+    color: #747474;
+    border-bottom: 2px solid #747474;
+    cursor: pointer;
+    transition: color .5s, font-size .5s, border-bottom .5s;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-top .offcn-sso-modal-top-current{
+    color: #da2d18;
+    font-size: 23px;
+    border-bottom: 3px solid #da2d18;
+}
+/* 弹窗 顶部 结束 */
+
+/* 弹窗 中部 开始 */
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle {
+    transition: height .5s, opacity .5s;
+    overflow: hidden;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-modal-middle-line {
+    width: 80%;
+    margin: 0 auto 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    position: relative;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-modal-middle-line .offcn-sso-modal-middle-icon {
+    width: 18px;
+    height: 24px;
+    padding: 13px 22px 12px 20px;
+    float: left;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-modal-middle-line .offcn-sso-modal-middle-input {
+    width: 75%;
+    height: 49px;
+    line-height: 49px;
+    box-sizing: border-box;
+    font-size: 18px;
+    border: none;
+    outline: none;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-modal-middle-line .offcn-sso-modal-middle-get-code {
+    width: 120px;
+    height:50px;
+    position: absolute;
+    right:0;
+    top:0;
+    text-align: center;
+    line-height: 50px;
+    font-size:14px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #da2d18;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-modal-middle-submit {
+    width: 170px;
+    height: 49px;
+    background: #da2d18;
+    color: #fff;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius:25px;
+    box-shadow: 0 2px 7px 1px #e5bcbe;
+    margin: 10px auto;
+    appearance: none;
+    font-size: 18px;
+}
+/* 弹窗 中部 结束 */
+
+/* 弹窗 底部 开始 */
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-bottom {
+    width: 90%;
+    margin:5px auto;
+    padding: 3px 0;
+    color: #747474;
+    user-select:none;
+    font-size: 80%;
+}
+/* 弹窗 底部 结束 */
+
+/* 弹窗 结束 */

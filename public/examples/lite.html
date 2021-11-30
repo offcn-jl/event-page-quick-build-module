@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻量版 - 演示 - 中公教育网站专题页快速构建模块</title>
+
+    <script src="../main.js" data-redirect="0" data-type="lite" data-crm-sid="f905e07b2bff94d564ac1fa41022a633"></script>
+
+</head>
+<body>
+    <h1>轻量版</h1>
+    <h3 style="color: red;">不加载 SSO 模块，仅提供个人后缀信息矫正及填充、联系信息填充等功能，不提供登陆注册逻辑。</h3>
+
+    <h3>查看其他类型：<a href="customization.html">自行实现</a> / <a href="manual.html">手动触发</a> / <a href="all-a-tag.html">拦截全部 a 标签</a> / <a href="a-tag.html">拦截部分 a 标签</a></h3>
+
+    <br/>
+
+    <h2>演示：自动填充</h2>
+
+    <h3>演示：链接填充个人推广后缀</h3>
+    <a href="https://www.offcn.com" class="offcn-suffix-link">向需要填充的 a 标签增加名称为 offcn-suffix-link 的 class 即可。</a>
+
+    <br/><br/>
+
+    <h3>演示：填充 可以与个人后缀联动的 智齿咨询</h3>
+    <div class="offcn-contact-information-zhichi">向需要填充的元素增加名称为 offcn-contact-information-zhichi 的 class 即可。（ 点击本行文本即可打开智齿咨询 ）</div>
+
+    <br/><br/>
+
+    <h3>演示：填充 可以与个人后缀联动的 微信 企业微信二维码</h3>
+    <p>向需要填充的 img 标签增加名称为 offcn-contact-information-wechat-work 的 class 即可。</p>
+    <img class="offcn-contact-information-wechat-work" alt="微信 企业微信">
+
+    <br/><br/>
+
+    <h3>演示：填充 可以与个人后缀联动的 咨询电话</h3>
+    <h4>演示：填充仅文本类型的咨询电话</h4>
+    <span class="offcn-contact-information-phone-text"></span> 向需要填充咨询电话的元素增加名称为 offcn-contact-information-phone-text 的 class 即可。填充过程会替换元素内的 html 文本。
+    <h4>演示：填充仅拨打电话类型的咨询电话 ( 拨打电话功能仅适配移动端 ) </h4>
+    <span class="offcn-contact-information-phone-call">点击咨询</span> ，向需要填充咨询电话的元素增加名称为 offcn-contact-information-phone-call 的 class 即可。
+    <h4>演示：填充文本加拨打电话类型的咨询电话 ( 拨打电话功能仅适配移动端 ) ( 支持配置前缀后缀 ) </h4>
+    <span class="offcn-contact-information-phone" data-perfix="前缀" data-suffix="后缀"></span>，向需要填充咨询电话的元素增加名称为 offcn-contact-information-phone 的 class 即可。填充过程会替换元素内的 html 文本。支持通过 data-perfix 属性配置前缀、通过 data-suffix 属性配置后缀。
+
+</body>
+</html>

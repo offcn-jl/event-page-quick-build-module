@@ -1,0 +1,1 @@
+declare function zc(e: string, t?: object);
