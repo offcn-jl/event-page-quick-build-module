@@ -47,7 +47,7 @@
     border-top-right-radius:10px ;
     width: 100%;
     height:60px;
-    font-size: 22px;
+    font-size: 20px;
     line-height:60px;
     user-select:none;
     text-align: center;
@@ -64,7 +64,7 @@
 
 .offcn-sso .offcn-sso-modal .offcn-sso-modal-top .offcn-sso-modal-top-current{
     color: #da2d18;
-    font-size: 23px;
+    font-size: 21px;
     border-bottom: 3px solid #da2d18;
 }
 /* 弹窗 顶部 结束 */
@@ -130,6 +130,17 @@
     appearance: none;
     font-size: 18px;
 }
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-forget-password {
+    color: #747474;
+    text-decoration: none;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-forget-password:hover {
+    color: #da2d18;
+    text-decoration: underline;
+}
+
 /* 弹窗 中部 结束 */
 
 /* 弹窗 底部 开始 */
