@@ -26,7 +26,7 @@
                 </div>
                 <input type="button" value="登 陆" class="offcn-sso-modal-middle-input offcn-sso-modal-middle-submit">
                 <span style="font-size: 90%;user-select:none;display: block;">
-                    <a class="offcn-sso-forget-password" href="https://passport.${process.env.NODE_ENV === 'production' ? '' : 't.'}eoffcn.com/sso/password.html?action=user_name_view&app_id=${window['ssoGateway'].id}" target="_blank">忘记密码?</a>
+                    <a class="offcn-sso-forget-password" href="https://sso.${process.env.NODE_ENV === 'production' ? '' : 't.'}eoffcn.com/user/login?ref=${window.location.href}&ssoAppId=${window['ssoGateway'].id}">忘记密码?</a>
                     <br/>
                 </span>
             </div>
