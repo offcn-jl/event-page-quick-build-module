@@ -7,8 +7,8 @@
         <div class="offcn-sso-modal">
             <div class="offcn-sso-modal-close"></div>
             <div class="offcn-sso-modal-top">
-                <span class="offcn-sso-modal-top-span offcn-sso-modal-top-current">账号登陆</span>
-                <span class="offcn-sso-modal-top-span">短信登陆</span>
+                <span class="offcn-sso-modal-top-span offcn-sso-modal-top-current">密码登陆</span>
+                <span class="offcn-sso-modal-top-span">验证码登陆 / 注册</span>
             </div>
             <div class="offcn-sso-modal-middle">
                 <span style="font-size: 90%;user-select:none;">
@@ -22,9 +22,13 @@
                 </div>
                 <div class="offcn-sso-modal-middle-line">
                     <img class="offcn-sso-modal-middle-icon" src="https://jl.offcn.com/zg/ty/images/bd_icon2.png">
-                    <input class="offcn-sso-modal-middle-input" type="text" id="offcn-sso-modal-password" placeholder="密码" autocomplete="off">
+                    <input class="offcn-sso-modal-middle-input" type="password" id="offcn-sso-modal-password" placeholder="密码" autocomplete="off">
                 </div>
                 <input type="button" value="登 陆" class="offcn-sso-modal-middle-input offcn-sso-modal-middle-submit">
+                <span style="font-size: 90%;user-select:none;display: block;">
+                    <a class="offcn-sso-forget-password" href="https://passport.${process.env.NODE_ENV === 'production' ? '' : 't.'}eoffcn.com/sso/password.html?action=user_name_view&app_id=${window['ssoGateway'].id}" target="_blank">忘记密码?</a>
+                    <br/>
+                </span>
             </div>
             <div class="offcn-sso-modal-middle" style="height: 0;">
                 <div class="offcn-sso-modal-middle-line">
@@ -71,8 +75,8 @@
                     }
                 }
                 (e.target as HTMLSpanElement).classList.add('offcn-sso-modal-top-current');
-                if ((e.target as HTMLSpanElement).innerText === '账号登陆') {
-                    (document.getElementsByClassName('offcn-sso-modal-middle')[0] as HTMLDivElement).style.height = "230px";
+                if ((e.target as HTMLSpanElement).innerText === '密码登陆') {
+                    (document.getElementsByClassName('offcn-sso-modal-middle')[0] as HTMLDivElement).style.height = "250px";
                     (document.getElementsByClassName('offcn-sso-modal-middle')[0] as HTMLDivElement).style.opacity = "1";
                     (document.getElementsByClassName('offcn-sso-modal-middle')[1] as HTMLDivElement).style.height = "0";
                     (document.getElementsByClassName('offcn-sso-modal-middle')[1] as HTMLDivElement).style.opacity = "0";
@@ -104,7 +108,7 @@
     // 账号登陆
     document.getElementsByClassName('offcn-sso-modal-middle-submit')[0].addEventListener('click', () => {
         // 等待检查手机号注册状态完成
-        if (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0].innerHTML === "请 稍 候 ...") {
+        if ((document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value === "请 稍 候 ...") {
             alert("请 稍 候 ...")
             return;
         }
@@ -118,13 +122,13 @@
                 return;
             }
 
-            document.getElementsByClassName('offcn-sso-modal-middle-submit')[0].innerHTML = "请 稍 候 ..."
+            (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value = "请 稍 候 ..."
 
             // 如果存在提交前中间件，则先将手机号转交处理，若其返回 false 则停止执行后续步骤
             if (typeof window['OffcnEventPageQuickBuildModule'].hooks.beforeSubmit === "function") {
                 if (!window['OffcnEventPageQuickBuildModule'].hooks.beforeSubmit(username)) {
                     window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'info', info: 'OffcnEventPageQuickBuildModule.hooks.beforeSubmit ( 提交前事件处理钩子 ) 返回 False, 阻止后续提交步骤.' });
-                    document.getElementsByClassName('offcn-sso-modal-middle-submit')[0].innerHTML = "登 陆"
+                    (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value = "登 陆"
                     return;
                 } else {
                     window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'info', info: 'OffcnEventPageQuickBuildModule..hooks.beforeSubmit ( 提交前事件处理钩子 ) 返回 True, 继续提交.' });
@@ -144,7 +148,7 @@
                                    window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'info', info: '用户账号登陆成功，执行数据推送操作.' });
                                    window['OffcnEventPageQuickBuildModule'].hooks.push(data.user.info.phone);
                                    // 恢复按钮
-                                   document.getElementsByClassName('offcn-sso-modal-middle-submit')[0].innerHTML = "登 陆";
+                                   (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value = "登 陆";
                                    // 关闭登陆框
                                    window['OffcnEventPageQuickBuildModule'].hooks.hideLogin();
                                    alert('登陆成功');
@@ -152,7 +156,7 @@
                                (code, message) => {
                                    // 失败
                                    window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'warn', info: `用户账号登陆失败，code：${code}，message：${message}.` });
-                                   (document.getElementsByClassName('offcn-sso-modal-middle-submit')[1] as HTMLInputElement).value = "登 陆";
+                                   (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value = "登 陆";
                                    alert(`[${code}] ${message}`);
                                },
             );
