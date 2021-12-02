@@ -414,7 +414,7 @@ class OffcnEventPageQuickBuildModule {
                                     const doms2 = document.getElementsByTagName("a");
                                     let count1 = 0;
                                     for (let key in doms2) {
-                                        if (doms2.hasOwnProperty(key) && doms2[key].getAttribute('href').indexOf('/ssogateway/v1/web/logout') === -1) {
+                                        if (doms2.hasOwnProperty(key) && doms2[key].getAttribute('href').indexOf('/ssogateway/v1/web/logout') === -1 && doms2[key].getAttribute('href').indexOf('eoffcn.com/user/login') === -1) {
                                             // 移除 a 标签原有的属性 href
                                             doms2[key].setAttribute('href', '');
                                             // 移除 a 标签原有的属性 target
