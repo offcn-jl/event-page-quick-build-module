@@ -57,5 +57,54 @@
     <h4>演示：填充文本加拨打电话类型的咨询电话 ( 拨打电话功能仅适配移动端 ) ( 支持配置前缀后缀 ) </h4>
     <span class="offcn-contact-information-phone" data-perfix="前缀" data-suffix="后缀"></span>，向需要填充咨询电话的元素增加名称为 offcn-contact-information-phone 的 class 即可。填充过程会替换元素内的 html 文本。支持通过 data-perfix 属性配置前缀、通过 data-suffix 属性配置后缀。
 
+    <br/><br/>
+
+    <h2 style="color: red;">本地调试</h2>
+    <p style="color: red;">跳转登陆模式的模块由于需要在 [ 当前域名/ssogateway/v1/ ] 路径下与 SSO 模块进行交互，所以无法以常规方式在本地进行调试。 </p>
+    <p>如需在本地进行调试请使用专用的辅助工具：<a href="https://libs.eoffcn.com/sso/reverse.zip?202109261453" target="_blank" rel="nofollow">本地测试反向代理工具下载</a>。</p>
+    <p>zip包解压后开发者可根据自己的操作系统类型选择使用，如下以linux为例：</p>
+    <style>
+        table {
+            padding: 0;
+        }
+        thead {
+            background: #f0f0f0 center right no-repeat;
+        }
+        th, td {
+            border: 1px solid #ddd;
+        }
+    </style>
+    <table>
+        <thead>
+        <tr>
+            <th>启动参数和Demo</th>
+            <th>备注</th>
+            <th>说明</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><p>gateway</p><p>$./reverse_linux --gateway=39.105.37.226</p></td>
+            <td><p>默认值：测试网关地址</p><p style="color: rgb(128,128,128);">基本无需配置</p></td>
+            <td>所有 http://*/ssogateway/v1/... 请求都会被反向代理至测试环境网关</td>
+        </tr>
+        <tr>
+            <td><p>port</p><p>$./reverse_linux --port=80</p></td>
+            <td>默认值：80</td>
+            <td>本地代理工具端口</td></tr>
+        <tr>
+            <td><p>backend</p><p>$./reverse_linux --backend=127.0.0.1:8080</p></td>
+            <td><p>默认值：127.0.0.1:8080，优先级高于root</p><p>（用于反向代理服务）</p></td>
+            <td><p>请求 http://127.0.0.1/a/b.html</p><p>最终会返回 http://127.0.0.1:8080/a/b.html</p></td>
+        </tr>
+        <tr>
+            <td><p>root</p><p>$./reverse_linux --root=1</p></td>
+            <td>默认值：空</td>
+            <td><p>请求 http://127.0.0.1 即可看到文件目录结构</p><p style="color: rgb(51,51,0);">（如本地没有服务，则可使用该参数将该工具放到相关目录下执行）</p></td>
+        </tr>
+        </tbody>
+    </table>
+    <p>目前支持本地的测试域名只有：localhost</p>
+
 </body>
 </html>
