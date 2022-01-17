@@ -139,26 +139,26 @@
 
             // 执行登陆操作
             window['ssoLogin']({ type: 1, username, password },
-                               data => {
-                                   // 成功
-                                   if (typeof window['OffcnEventPageQuickBuildModule'].hooks.afterSubmit === 'function' && !window['OffcnEventPageQuickBuildModule'].hooks.afterSubmit(username, data)) {
-                                       return;
-                                   }
-                                   // 推送数据
-                                   window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'info', info: '用户账号登陆成功，执行数据推送操作.' });
-                                   window['OffcnEventPageQuickBuildModule'].hooks.push(data.user.info.phone);
-                                   // 恢复按钮
-                                   (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value = "登 陆";
-                                   // 关闭登陆框
-                                   window['OffcnEventPageQuickBuildModule'].hooks.hideLogin();
-                                   alert('登陆成功');
-                               },
-                               (code, message) => {
-                                   // 失败
-                                   window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'warn', info: `用户账号登陆失败，code：${code}，message：${message}.` });
-                                   (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value = "登 陆";
-                                   alert(`[${code}] ${message}`);
-                               },
+                data => {
+                    // 成功
+                    if (typeof window['OffcnEventPageQuickBuildModule'].hooks.afterSubmit === 'function' && !window['OffcnEventPageQuickBuildModule'].hooks.afterSubmit(username, data)) {
+                        return;
+                    }
+                    // 推送数据
+                    window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'info', info: '用户账号登陆成功，执行数据推送操作.' });
+                    window['OffcnEventPageQuickBuildModule'].hooks.push(data.user.info.phone);
+                    // 恢复按钮
+                    (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value = "登 陆";
+                    // 关闭登陆框
+                    window['OffcnEventPageQuickBuildModule'].hooks.hideLogin();
+                    alert('登陆成功');
+                },
+                (code, message) => {
+                    // 失败
+                    window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'warn', info: `用户账号登陆失败，code：${code}，message：${message}.` });
+                    (document.getElementsByClassName('offcn-sso-modal-middle-submit')[0] as HTMLInputElement).value = "登 陆";
+                    alert(`[${code}] ${message}`);
+                },
             );
         }
     });
@@ -192,13 +192,12 @@
                 window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'info', info: '未定义 OffcnEventPageQuickBuildModule.hooks.beforeSubmit ( 提交前事件处理钩子 ) , 跳过预检.' });
             }
 
-            window['OffcnEventPageQuickBuildModule'].functions.request({ url: '/ssogateway/v1/user/sms/send', method: 'POST', data: { ssoAppId: window['ssoGateway'].id, phone: username } }).then(res => {
-                if (res.responseJson.code !== 0) {
-                    alert(`[${res.responseJson.code}]${res.responseJson.msg}`);
-                    document.getElementsByClassName('offcn-sso-modal-middle-get-code')[0].innerHTML = "获取验证码";
-                    return;
-                }
-
+            window['ssoRequest']({
+                type: 'POST',
+                data: { ssoAppId: window['ssoGateway'].id, phone: username },
+                dataType: 'json',
+                url: '/ssogateway/v1/user/sms/send'
+            }, () => {
                 // 倒计时函数
                 function countdown(second) {
                     if (second > 0) {
@@ -215,11 +214,11 @@
 
                 alert('发送验证码成功！');
                 countdown(120); // 倒计时
-            }).catch(e => {
+            }, (errCode, errMsg) => {
                 (document.getElementsByClassName('offcn-sso-modal-middle-get-code')[0] as HTMLInputElement).value = "获取验证码"
-                window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'warn', info: `发送验证码失败，错误内容：${e}.` });
-                alert(`发送验证码失败`);
-            })
+                window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'warn', info: `发送验证码失败，错误内容：[${errCode}] ${errMsg}.` });
+                alert(`发送验证码失败: [${errCode}] ${errMsg}`);
+            });
         }
     })
 
@@ -261,26 +260,26 @@
 
             // 执行登陆操作
             window['ssoLogin']({ type: 2, username, code },
-                               data => {
-                                   // 成功
-                                   if (typeof window['OffcnEventPageQuickBuildModule'].hooks.afterSubmit === 'function' && !window['OffcnEventPageQuickBuildModule'].hooks.afterSubmit(username, data)) {
-                                       return;
-                                   }
-                                   // 推送数据
-                                   window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'info', info: '用户短信登陆成功，执行数据推送操作.' });
-                                   window['OffcnEventPageQuickBuildModule'].hooks.push(data.user.info.phone);
-                                   // 恢复按钮
-                                   (document.getElementsByClassName('offcn-sso-modal-middle-submit')[1] as HTMLInputElement).value = "登 陆";
-                                   // 关闭登陆框
-                                   window['OffcnEventPageQuickBuildModule'].hooks.hideLogin();
-                                   alert('登陆成功');
-                               },
-                               (code, message) => {
-                                   // 失败
-                                   window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'warn', info: `用户短信登陆失败，code：${code}，message：${message}.` });
-                                   (document.getElementsByClassName('offcn-sso-modal-middle-submit')[1] as HTMLInputElement).value = "登 陆";
-                                   alert(`[${code}] ${message}`);
-                               },
+                data => {
+                    // 成功
+                    if (typeof window['OffcnEventPageQuickBuildModule'].hooks.afterSubmit === 'function' && !window['OffcnEventPageQuickBuildModule'].hooks.afterSubmit(username, data)) {
+                        return;
+                    }
+                    // 推送数据
+                    window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'info', info: '用户短信登陆成功，执行数据推送操作.' });
+                    window['OffcnEventPageQuickBuildModule'].hooks.push(data.user.info.phone);
+                    // 恢复按钮
+                    (document.getElementsByClassName('offcn-sso-modal-middle-submit')[1] as HTMLInputElement).value = "登 陆";
+                    // 关闭登陆框
+                    window['OffcnEventPageQuickBuildModule'].hooks.hideLogin();
+                    alert('登陆成功');
+                },
+                (code, message) => {
+                    // 失败
+                    window['OffcnEventPageQuickBuildModule'].functions.logger.push({ type: 'warn', info: `用户短信登陆失败，code：${code}，message：${message}.` });
+                    (document.getElementsByClassName('offcn-sso-modal-middle-submit')[1] as HTMLInputElement).value = "登 陆";
+                    alert(`[${code}] ${message}`);
+                },
             );
         }
     });
