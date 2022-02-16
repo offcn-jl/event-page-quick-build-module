@@ -40,9 +40,20 @@
                     <input class="offcn-sso-modal-middle-input" type="text" id="offcn-sso-modal-code" placeholder="验证码" autocomplete="off">
                     <div class="offcn-sso-modal-middle-get-code">获取验证码</div>
                 </div>
+                <div class="offcn-sso-modal-agreement">
+                    <label>
+                        <input type="checkbox" class="offcn-sso-modal-agreement-agree">已经阅读并同意
+                    </label>
+                    <b class="offcn-sso-modal-agreement-read offcn-sso-modal-agreement-privacy">《用户信息保护及隐私政策》</b>
+                </div>
                 <input type="button" value="登 陆" class="offcn-sso-modal-middle-input offcn-sso-modal-middle-submit">
             </div>
             <div class="offcn-sso-modal-bottom">${window['OffcnEventPageQuickBuildModule'].infos.suffixStr}</div>
+        </div>
+        <div class="offcn-sso-agreement-privacy">
+            <iframe  class="offcn-sso-agreement-privacy-read" src="${window['OffcnEventPageQuickBuildModule'].infos.api.chaos}/agreement/privacy?type=html" frameborder="0"></iframe>
+            <input type="button" value="同 意" class="offcn-sso-agreement-button offcn-sso-agreement-agree">
+            <input type="button" value="拒 绝" class="offcn-sso-agreement-button offcn-sso-agreement-disagree">
         </div>
     </div>
     `;
@@ -83,12 +94,29 @@
                 } else {
                     (document.getElementsByClassName('offcn-sso-modal-middle')[0] as HTMLDivElement).style.height = "0";
                     (document.getElementsByClassName('offcn-sso-modal-middle')[0] as HTMLDivElement).style.opacity = "0";
-                    (document.getElementsByClassName('offcn-sso-modal-middle')[1] as HTMLDivElement).style.height = "190px";
+                    (document.getElementsByClassName('offcn-sso-modal-middle')[1] as HTMLDivElement).style.height = "230px";
                     (document.getElementsByClassName('offcn-sso-modal-middle')[1] as HTMLDivElement).style.opacity = "1";
                 }
             });
         }
     }
+
+    // 阅读协议
+    document.getElementsByClassName('offcn-sso-modal-agreement-privacy')[0].addEventListener('click', () => {
+        (document.getElementsByClassName('offcn-sso-agreement-privacy')[0] as HTMLDivElement).style.display = 'block';
+    });
+
+    // 协议 同意
+    document.getElementsByClassName('offcn-sso-agreement-agree')[0].addEventListener('click', () => {
+        (document.getElementsByClassName('offcn-sso-modal-agreement-agree')[0] as HTMLInputElement).checked = true;
+        (document.getElementsByClassName('offcn-sso-agreement-privacy')[0] as HTMLDivElement).style.display = 'none';
+    });
+
+    // 协议 拒绝
+    document.getElementsByClassName('offcn-sso-agreement-disagree')[0].addEventListener('click', () => {
+        (document.getElementsByClassName('offcn-sso-modal-agreement-agree')[0] as HTMLInputElement).checked = false;
+        (document.getElementsByClassName('offcn-sso-agreement-privacy')[0] as HTMLDivElement).style.display = 'none';
+    });
 
     // 校验手机号码是否合法
     function checkPhone(phone) {
@@ -240,6 +268,12 @@
             }
             if (code.length !== 6) {
                 alert('请正确填写验证码！');
+                return;
+            }
+
+            if (!(document.getElementsByClassName('offcn-sso-modal-agreement-agree')[0] as HTMLInputElement).checked) {
+                alert('注册账号前请您先阅读并同意相关协议');
+                (document.getElementsByClassName('offcn-sso-agreement-privacy')[0] as HTMLDivElement).style.display = 'block';
                 return;
             }
 

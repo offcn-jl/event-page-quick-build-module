@@ -116,6 +116,19 @@
     border-radius: 5px;
 }
 
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-modal-agreement {
+    display: block;
+    margin: 0 auto;
+    width: 75%;
+    text-align: left;
+    font-size: 90%;
+    user-select: none;
+}
+
+.offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-modal-agreement-read {
+    color: #5d77fa;
+}
+
 .offcn-sso .offcn-sso-modal .offcn-sso-modal-middle .offcn-sso-modal-middle-submit {
     width: 170px;
     height: 49px;
@@ -155,3 +168,45 @@
 /* 弹窗 底部 结束 */
 
 /* 弹窗 结束 */
+
+.offcn-sso-agreement-privacy {
+    display: none;
+    background: #f3f5f7;
+    position: fixed;
+    top: 5vh;
+    left: 5vw;
+    border-radius: 10px;
+    z-index: 10000;
+    width: 90vw;
+    text-align: center;
+}
+
+.offcn-sso-agreement-privacy .offcn-sso-agreement-privacy-read {
+    width: 100%;
+    height: 80vh;
+}
+
+.offcn-sso-agreement-privacy .offcn-sso-agreement-button {
+    width: 170px;
+    height: 49px;
+    background: #000000;
+    color: #fff;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius:25px;
+    box-shadow: 0 2px 7px 1px #000000;
+    margin: 10px auto;
+    appearance: none;
+    font-size: 18px;
+}
+
+.offcn-sso-agreement-privacy .offcn-sso-agreement-agree {
+    background: #5d77fa;
+    box-shadow: 0 2px 7px 1px #5d77fa;
+}
+
+.offcn-sso-agreement-privacy .offcn-sso-agreement-disagree {
+    background: #da2d18;
+    box-shadow: 0 2px 7px 1px #e5bcbe;
+}
