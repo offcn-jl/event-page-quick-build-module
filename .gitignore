@@ -2,3 +2,5 @@ node_modules
 dist
 
 do-not-commit
+
+.DS_Store
