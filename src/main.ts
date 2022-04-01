@@ -518,10 +518,18 @@ class OffcnEventPageQuickBuildModule {
                     // 判断是否已经含有参数
                     if (doms[key].href.indexOf("?") !== -1) {
                         // 含有参数, 将后缀拼接到原参数后
-                        doms[key].href = doms[key].href + "&" + this.infos.suffixStr;
+                        if (doms[key].href.indexOf("#") !== -1) {
+                            doms[key].href = doms[key].href.split("#")[0] + "&" + this.infos.suffixStr + "#" + doms[key].href.split("#")[1];
+                        } else {
+                            doms[key].href = doms[key].href + "&" + this.infos.suffixStr;
+                        }
                     } else {
                         // 没有参数, 直接拼接后缀
-                        doms[key].href = doms[key].href + "?" + this.infos.suffixStr;
+                        if (doms[key].href.indexOf("#") !== -1) {
+                            doms[key].href = doms[key].href.split("#")[0] + "?" + this.infos.suffixStr + "#" + doms[key].href.split("#")[1];
+                        } else {
+                             doms[key].href = doms[key].href + "?" + this.infos.suffixStr;
+                        }
                     }
                     count++;
                 }
